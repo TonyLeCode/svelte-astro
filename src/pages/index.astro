@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.svelte';
+
+const posts = await Astro.glob('../pages/posts/*.md');
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		{posts.map(post => 
+		<Card title={post.frontmatter.title} message={post.compiledContent()} />)}
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 80ch;
+	}
+</style>
